@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>出品下書きの見本と、出す前の点検</title>
+<meta name="description" content="写真から作った出品下書きの見本3点と、出品文を貼ると出す前の点検が動くページ。入力はこのページの外に送りません。">
+<style>
+:root{--ink:#1d2430;--sub:#5d6a7a;--line:#dfe5ec;--bg:#f6f8fb;--ok:#0d7a4f;--ng:#b3261e;--warn:#8a5a00;--accent:#1358d6}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);line-height:1.8}
+header{background:#fff;border-bottom:1px solid var(--line);padding:26px 20px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+h1{font-size:22px;margin:0 0 8px}
+h2{font-size:19px;margin:44px 0 6px;padding-top:10px}
+h3{font-size:16px;margin:22px 0 6px}
+p.lead{color:var(--sub);margin:0;font-size:14px}
+.note{background:#fff8e6;border:1px solid #f0d99a;border-radius:8px;padding:12px 14px;font-size:13.5px;margin:16px 0}
+section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:20px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.card .pics{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px;background:var(--line)}
+.card .pics img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+.card .body{padding:14px 16px}
+.card .t{font-weight:700;font-size:14.5px;margin-bottom:6px}
+.card pre{white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#36404e;background:var(--bg);border-radius:6px;padding:10px;margin:8px 0 0;max-height:210px;overflow:auto}
+.kane{font-size:13px;color:var(--sub);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+textarea{width:100%;min-height:190px;font-family:inherit;font-size:14px;padding:12px;border:1px solid var(--line);border-radius:8px;resize:vertical}
+input,select{font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:6px}
+label{font-size:13.5px;color:var(--sub);display:block;margin-bottom:4px}
+.row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+.row>div{flex:1;min-width:150px}
+button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:11px 22px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+button.sub{background:#fff;color:var(--accent);border:1px solid var(--accent);padding:7px 14px;font-size:13px}
+ul.kekka{list-style:none;padding:0;margin:14px 0 0}
+ul.kekka li{padding:9px 12px;border-radius:7px;margin-bottom:7px;font-size:14px;border:1px solid}
+li.ng{background:#fdeceb;border-color:#f2c0bc;color:var(--ng)}
+li.hito{background:#fff6e5;border-color:#f0dcae;color:var(--warn)}
+li.ok{background:#e9f7f0;border-color:#b6e0cd;color:var(--ok)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin-top:10px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:right}
+th{background:var(--bg);font-weight:600}
+td:first-child,th:first-child{text-align:left}
+footer{color:var(--sub);font-size:13px;padding:34px 0 60px;text-align:center}
+code{background:var(--bg);padding:2px 5px;border-radius:4px;font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>出品下書きの見本と、出す前の点検</h1>
+  <p class="lead">写真から作った出品下書き3点と、自分の出品文を貼って点検できるページです。入れた文字はこのページの外に送っていません。読み込み以外の通信はありません。</p>
+</div></header>
+
+<div class="wrap">
+
+<div class="note">
+  <strong>ここに並ぶ3点は、記事のために用意した架空の商品です。</strong>
+  写真もAIで作ったもので、実在の品物ではありません。手順と点検の動きを確かめるための見本として見てください。
+  送料の金額は2026年9月に公式ページを見て書き写した見本です。料金は変わるので、使うときは必ず自分で確かめてください。
+</div>
+
+<h2>1. 写真から出てきた下書き（見本3点）</h2>
+<p class="lead">写真を9枚まとめて渡して、3点ぶんの下書きが出るまで、機械が動いていたのは19秒でした。下の文章はそのとき実際に出てきたものです。</p>
+<div class="grid" id="mihon"></div>
+
+<section>
+<h2 style="margin-top:0">2. 自分の出品文を点検する</h2>
+<p class="lead">タイトルと説明文を貼ると、出す前に止めたほうがいい所と、人が自分で見るべき所に分けて出します。</p>
+<div class="row">
+  <div style="flex:2"><label>タイトル</label><input id="t" style="width:100%" placeholder="スウェット トレーナー クルーネック グレー"></div>
+  <div><label>種類</label><select id="shurui"><option>衣類</option><option>家電</option><option>本</option><option>その他</option></select></div>
+  <div><label>写真の枚数</label><input id="mai" type="number" value="3" min="0" style="width:100%"></div>
+</div>
+<label>説明文</label>
+<textarea id="s" placeholder="【特徴】&#10;・…&#10;&#10;【状態】&#10;・…"></textarea>
+<div class="row">
+  <div><label>売値（円）</label><input id="u" type="number" value="1980" style="width:100%"></div>
+  <div><label>箱の大きさ</label><select id="h"></select></div>
+  <div><label>残したい手取り（円）</label><input id="m" type="number" value="1000" style="width:100%"></div>
+</div>
+<p><button onclick="tenken()">点検する</button>
+   <button class="sub" onclick="ireru()">見本を入れてみる</button></p>
+<ul class="kekka" id="kekka"></ul>
+</section>
+
+<section>
+<h2 style="margin-top:0">3. 値段から手取りを出す</h2>
+<p class="lead">売値をそのまま受け取れるわけではありません。手数料と送料を引いた後の数字を先に見ます。</p>
+<table id="kanehyou"><thead><tr><th>箱の大きさ</th><th>送料</th><th>手数料</th><th>手取り</th></tr></thead><tbody></tbody></table>
+<p class="lead" id="gyaku" style="margin-top:12px"></p>
+</section>
+
+<section>
+<h2 style="margin-top:0">4. AIに貼る指示文</h2>
+<p class="lead">写真と一緒に、使っているAIの画面に貼るための文章です。答えの形をこちらで決めておくのが肝で、決めないと毎回ちがう書き方が返ってきて、後の組み立てが止まります。</p>
+<pre id="shiji" style="white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:12.5px;background:var(--bg);padding:14px;border-radius:8px;max-height:320px;overflow:auto"></pre>
+<p><button class="sub" onclick="copyShiji()">この指示文をコピー</button> <span id="copied" style="font-size:13px;color:var(--ok)"></span></p>
+</section>
+
+<section>
+<h2 style="margin-top:0">5. この見本で、実際に引っかかったもの</h2>
+<p class="lead">うまくいった話だけ載せても役に立たないので、3点を通したときに出た分を並べます。</p>
+<ul class="kekka">
+  <li class="hito">グレーのスウェットで、AIが特徴に「裏地は裏毛（パイル）仕様」と書いてきました。写真は外側しか写っていないので、確かめられません。「写っていないことは書かないで」と指示文に入れてあっても、素材の推測は入ってきます。</li>
+  <li class="hito">同じスウェットで「身頃全体のたたみジワ」を傷として拾いました。たたんだ跡は傷ではないので、人が消します。</li>
+  <li class="ng">本のセットなのに「採寸が空です」と止まりました。AIが採寸の要否を「要る」と答えていたためです。今は種類が衣類のときだけ採寸を見るように直してあります。</li>
+  <li class="ng">タイトルが「…グレー グレー」と二重になりました。品名の中にすでに色が入っていたためです。同じ言葉を二度入れないように直しました。</li>
+  <li class="hito">イヤホンは「白 ホワイト」が並んだままです。同じ意味でも文字が違うと、まだ気づけません。ここは人が消します。</li>
+</ul>
+</section>
+
+</div>
+<footer>入れた文字はこのページの外に送っていません。<br>見本の商品・写真は架空のものです。</footer>
+
+<script>
+const SOURYOU={"ネコポス":210,"宅急便コンパクト":450,"宅急便60":750,"宅急便80":850,"宅急便100":1050};
+const RITSU=0.10;
+const ABUNAI=["新品同様","未使用に近い","美品","完璧","傷なし","汚れなし","正規品","本物","鑑定済","送料無料","即決"];
+const SAISUN=["着丈","身幅","肩幅","袖丈"];
+const SUISOKU=["裏地","素材","混率","生地","防水","純正","正規"];
+
+for(const k of Object.keys(SOURYOU)){
+  for(const id of ["h"]) document.getElementById(id).add(new Option(k+"（"+SOURYOU[k]+"円）",k));
+}
+document.getElementById("h").value="宅急便60";
+
+function tedori(u,s){return Math.round(u-u*RITSU-s);}
+
+function tenken(){
+  const t=document.getElementById("t").value.trim();
+  const s=document.getElementById("s").value.trim();
+  const shurui=document.getElementById("shurui").value;
+  const mai=+document.getElementById("mai").value;
+  const u=+document.getElementById("u").value;
+  const hako=document.getElementById("h").value;
+  const mokuhyou=+document.getElementById("m").value;
+  const sry=SOURYOU[hako]||0;
+  const ng=[],hito=[];
+
+  if(!t) ng.push("タイトルが空です");
+  else if([...t].length>40) ng.push(`タイトルが${[...t].length}字。上限40字を超えています`);
+  if([...s].length>1000) ng.push(`説明文が${[...s].length}字。上限1000字を超えています`);
+  if(mai<3) ng.push(`写真が${mai}枚。3枚に足りません`);
+  if(shurui==="衣類"){
+    const nuke=SAISUN.filter(x=>!s.includes(x));
+    if(nuke.length) ng.push("採寸が見あたりません: "+nuke.join(" / "));
+  }
+  if(!s.includes("【状態】")) ng.push("【状態】の見出しがありません。傷の書き漏れが起きます");
+  if(u<=0) ng.push("売値がまだ 0 です");
+  else{
+    const td=tedori(u,sry);
+    if(td<mokuhyou){
+      const kabe=Math.ceil((mokuhyou+sry)/(1-RITSU)/10)*10;
+      ng.push(`手取りが${td.toLocaleString()}円。目標${mokuhyou.toLocaleString()}円に届きません（売値を${kabe.toLocaleString()}円以上にするか、箱を小さくする）`);
+    }
+  }
+  for(const w of ABUNAI) if(t.includes(w)||s.includes(w)) hito.push(`「${w}」が入っています。言い切れるか自分で確かめる`);
+  for(const w of SUISOKU) if(s.includes(w)) hito.push(`「${w}」は写真とタグで確かめられますか。確かめられないなら消す`);
+  if(/シワ|しわ|折り目|たたみ/.test(s)) hito.push("「シワ」を傷として書いていませんか。たたんだ跡なら消す");
+  hito.push("ブランド名と型番は、現物のタグを見て書きましたか（AIの推測なら消す）");
+  hito.push("付属品（箱・ケーブル・説明書）は全部そろえて、箱に入れましたか");
+
+  const ul=document.getElementById("kekka"); ul.innerHTML="";
+  if(ng.length===0) ul.insertAdjacentHTML("beforeend",`<li class="ok">止まる項目はありません。下の「人が見る」だけ確かめて出せます。</li>`);
+  for(const x of ng) ul.insertAdjacentHTML("beforeend",`<li class="ng">止まる: ${esc(x)}</li>`);
+  for(const x of hito) ul.insertAdjacentHTML("beforeend",`<li class="hito">人が見る: ${esc(x)}</li>`);
+  kane();
+}
+
+function kane(){
+  const u=+document.getElementById("u").value, mokuhyou=+document.getElementById("m").value;
+  const tb=document.querySelector("#kanehyou tbody"); tb.innerHTML="";
+  for(const [k,s] of Object.entries(SOURYOU)){
+    const te=tedori(u,s);
+    tb.insertAdjacentHTML("beforeend",
+      `<tr><td>${k}</td><td>${s.toLocaleString()}円</td><td>${Math.round(u*RITSU).toLocaleString()}円</td><td${te<mokuhyou?' style="color:#b3261e;font-weight:700"':''}>${te.toLocaleString()}円</td></tr>`);
+  }
+  const hako=document.getElementById("h").value, sry=SOURYOU[hako];
+  const kabe=Math.ceil((mokuhyou+sry)/(1-RITSU)/10)*10;
+  document.getElementById("gyaku").textContent=
+    `${hako}で手取り${mokuhyou.toLocaleString()}円を残すなら、売値は ${kabe.toLocaleString()}円 以上にする必要があります。`;
+}
+
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+let MIHON={};
+fetch("mihon.json").then(r=>r.json()).then(d=>{
+  MIHON=d;
+  const g=document.getElementById("mihon");
+  for(const [h,v] of Object.entries(d)){
+    const sry=SOURYOU[v.hako]||0;
+    g.insertAdjacentHTML("beforeend",`
+      <div class="card">
+        <div class="pics">
+          <img src="shashin/${h}_01.jpg" alt="見本の商品写真 ${h} 全体" loading="lazy">
+          <img src="shashin/${h}_02.jpg" alt="見本の商品写真 ${h}" loading="lazy">
+          <img src="shashin/${h}_03.jpg" alt="見本の商品写真 ${h} 傷の部分" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="t">${esc(v.title)}</div>
+          <pre>${esc(v.setsumei)}</pre>
+          <div class="kane">売値 ${v.uriane.toLocaleString()}円 ／ ${v.hako} ${sry.toLocaleString()}円 ／ 手数料 ${Math.round(v.uriane*RITSU).toLocaleString()}円<br><strong>手取り ${tedori(v.uriane,sry).toLocaleString()}円</strong>　写真から拾った傷 ${v.kizu.length}件</div>
+        </div>
+      </div>`);
+  }
+});
+
+function ireru(){
+  const v=MIHON["01"]; if(!v) return;
+  document.getElementById("t").value=v.title;
+  document.getElementById("s").value=v.setsumei;
+  document.getElementById("shurui").value="衣類";
+  document.getElementById("u").value=v.uriane;
+  document.getElementById("h").value=v.hako;
+  tenken();
+}
+
+const SHIJI=`# 品番 01 の写真から、出品の材料を出してください
+
+写真を3枚貼ります。中古品をフリマアプリに出すための材料を作ってください。
+
+## 守ってほしいこと
+
+- 写真に写っていないことは書かない。わからない項目は "" のままにする
+- ブランド名・型番は、写真のタグや刻印がはっきり読めるときだけ書く。
+  推測で書かない。読めないなら "" にする
+- 傷・汚れ・色あせ・毛玉は、見えたぶんだけ全部 kizu に書く。
+  「軽微」「ほとんど気にならない」のような程度の判断は書かない。見えた形だけ書く
+- 「新品同様」「美品」「完璧」は使わない
+
+## この形の JSON だけを返してください
+
+{
+  "shurui": "衣類 / 家電 / 本 / その他 のどれか",
+  "namae": "検索で打たれる言葉ではじまる品名（30字まで）",
+  "brand": "",
+  "kataban": "",
+  "iro": "",
+  "size_hyouki": "タグに書かれていたサイズ表記。読めなければ空",
+  "tokuchou": ["写真から言える特徴", "3〜5個"],
+  "kizu": [
+    {"basho": "どこ", "naiyou": "何が見えるか", "shashin": 2}
+  ],
+  "fuzokuhin": ["写真に写っている付属品だけ"],
+  "saisun_hitsuyou": true,
+  "wakaranai": ["写真だけでは決められなかったこと"]
+}`;
+document.getElementById("shiji").textContent=SHIJI;
+function copyShiji(){
+  navigator.clipboard.writeText(SHIJI).then(()=>{
+    document.getElementById("copied").textContent="コピーしました";
+    setTimeout(()=>document.getElementById("copied").textContent="",2200);
+  });
+}
+kane();
+</script>
+</body>
+</html>
